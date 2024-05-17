@@ -42,11 +42,14 @@ def printInfo(empDetailList):
         taxRate = empList[5]
         grossPay, incomeTax, netPay = CalcTaxAndNetPay(hours, hourlyRate, taxRate)
         print(fromDate, endDate, empName, f"{hours:,.2f}", f"{hourlyRate:,.2f}", f"{grossPay:,.2f}", f"{taxRate:,.1%}", f"{incomeTax:,.2f}", f"{netPay:,.2f}")
+        
         totalEmployees += 1
         totalHours += hours
         totalGrossPay += grossPay
+        #totalTax += incomeTax
         totalTax += incomeTax
         totalNetPay += netPay
+        
         empTotals["totEmp"] = totalEmployees
         empTotals["totHours"] = totalHours
         empTotals["totGross"] = totalGrossPay
@@ -61,12 +64,12 @@ def printTotals(empTotals):
     print(f'Total Tax for Employees: {empTotals["totTax"]}')
     print(f'Total netPay of Employees: {empTotals["totNet"]}')
     
-elif __name__ == "__main__":
+if __name__ == "__main__":
       empDetailList = []
       empTotals = {}
       while True:
-          empName = getDatesWorked()
-          elif (empName.lower() == "end"):
+          empName = getEmpName()
+          if (empName.lower() == "end"):
                break
           fromDate, endDate = getDatesWorked()
           hours = getHoursWorked()
